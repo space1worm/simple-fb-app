@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { collection, addDoc, getFirestore } from "firebase/firestore";
-import { IPosts } from "./db.types";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
     apiKey: "AIzaSyChnDQ86UwE_fxB4c_uIa8Uepopr0HQOWA",
@@ -12,11 +12,5 @@ const firebaseConfig = {
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
-const firebaseDB = getFirestore();
-
-//code inside component
-export const createPost = async (payload: IPosts) => {
-    const postsCollectionRef = collection(firebaseDB, "posts");
-    const responce = await addDoc(postsCollectionRef, payload);
-    return responce;
-};
+export const firebaseDB = getFirestore();
+export const firebaseStorage = getStorage(firebaseApp);
