@@ -1,16 +1,26 @@
 import Image from "next/image";
 import { useSession } from 'next-auth/react';
-import { FormEvent } from "react";
+import { FormEvent, useRef } from "react";
 
 import { FaceSmileIcon } from '@heroicons/react/24/outline'
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
 
+import { createPost } from '../firebase';
+import { IPosts } from "../db.types";
+
 export default function PostBox() {
     const session = useSession();
+    const inputRef = useRef<null | HTMLInputElement>(null);
 
-    const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
-        console.log('hi');
+    const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        if (!inputRef.current) return;
+
+        const payload: IPosts = {
+        }
+
+        const resp = await createPost(payload);
     }
 
     return <div className="bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium mt-6">
@@ -27,8 +37,9 @@ export default function PostBox() {
                 <input
                     className="rounded-full h-12 bg-gray-100 flex-grow px-5 focus:outline:none"
                     type="text"
+                    ref={inputRef}
                     placeholder={`Whats on your mind, ${session.data?.user?.name}?`} />
-                <button hidden type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
         <div className="flex justify-evenly p-3 border-t">
