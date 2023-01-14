@@ -1,16 +1,38 @@
 import Head from 'next/head'
-import Header from '../components/Header'
+import { Session } from 'next-auth';
+import { getSession, GetSessionParams } from 'next-auth/react'
 
-export default function Home() {
+
+import Header from '../components/Header'
+import Sidebar from '../components/Sidebar'
+import Login from '../components/Login';
+
+import Feed from '../components/Feed';
+
+export default function Home({ session }: { session: Session }) {
+  if (!session) return <Login />
+
   return (
-    <div>
+    <div className='h-screen bg-gray-100 overflow-hidden'>
       <Head>
         <title>Facebook</title>
       </Head>
       <Header />
-      <main>
 
+      <main className='flex'>
+        <Sidebar />
+        <Feed />
       </main>
     </div>
   )
+};
+
+export async function getServerSideProps(context: GetSessionParams) {
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session
+    }
+  }
 }
