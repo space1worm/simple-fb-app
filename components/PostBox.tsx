@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useSession } from 'next-auth/react';
 import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { serverTimestamp } from "firebase/firestore";
 
