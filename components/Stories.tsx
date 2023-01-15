@@ -7,36 +7,11 @@ export interface IStories {
 }
 
 const stories: IStories[] = [
-    {
-        name: "Jacob",
-        src: 'https://links.papareact.com/zof',
-        profile: "https://links.papareact.com/l4v"
-    },
-    {
-        name: "Jacob",
-        src: 'https://links.papareact.com/zof',
-        profile: "https://links.papareact.com/l4v"
-    },
-    {
-        name: "Jacob",
-        src: 'https://links.papareact.com/zof',
-        profile: "https://links.papareact.com/l4v"
-    },
-    {
-        name: "Jacob",
-        src: 'https://links.papareact.com/zof',
-        profile: "https://links.papareact.com/l4v"
-    },
-    {
-        name: "Jacob",
-        src: 'https://links.papareact.com/zof',
-        profile: "https://links.papareact.com/l4v"
-    },
-    {
-        name: "Jacob",
-        src: 'https://links.papareact.com/zof',
-        profile: "https://links.papareact.com/l4v"
-    },
+    { src: 'https://links.papareact.com/f0p', profile: 'https://links.papareact.com/f0p', name: 'Jeff Bezos' },
+    { src: 'https://links.papareact.com/kxk', profile: 'https://links.papareact.com/f0p', name: 'Elon Musk' },
+    { src: 'https://links.papareact.com/zvy', profile: 'https://links.papareact.com/f0p', name: 'Bill Gates' },
+    { src: 'https://links.papareact.com/snf', profile: 'https://links.papareact.com/f0p', name: 'Mark Zuckerberg' },
+    { src: 'https://links.papareact.com/d0c', profile: 'https://links.papareact.com/f0p', name: 'Harry Potter' },
 ]
 
 export default function Stories() {

@@ -8,7 +8,7 @@ import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
 
 import { createPost, createPostImage } from "../db/posts";
 
-import { IPosts } from "../db.types";
+import { IPosts } from "../db/db.types";
 
 interface Img {
     blob: Blob | null;
@@ -79,7 +79,7 @@ export default function PostBox() {
                     type="text"
                     ref={inputRef}
                     placeholder={`Whats on your mind, ${session.data?.user?.name}?`} />
-                <button hidden className="bg-gray-100 rounded-full px-4 py-2 text-center" type="submit">submit</button>
+                <button className="bg-gray-100 rounded-full px-4 py-2 text-center" type="submit">submit</button>
             </form>
             {imageToPost.src && (
                 <div onClick={removeImage} className="flex flex-col filter hover:brightness-110 transition duration-120 transform hover:scale105 cursor-pointer">

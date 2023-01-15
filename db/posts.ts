@@ -3,7 +3,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { firebaseDB, firebaseStorage } from "../firebase";
 
-import { IPosts } from "../db.types";
+import { IPosts, ImgFile } from "./db.types";
 
 const metadata = {
     contentType: "image/jpeg",
@@ -36,5 +36,3 @@ export const createPost = async (payload: IPosts, file: ImgFile) => {
     await createPostImage(responce.id, file);
     return responce;
 };
-
-type ImgFile = Blob | Uint8Array | ArrayBuffer;
