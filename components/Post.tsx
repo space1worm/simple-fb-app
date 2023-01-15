@@ -3,30 +3,49 @@ import {
   ShareIcon,
   HandThumbUpIcon,
   ChatBubbleLeftIcon,
+  TrashIcon,
 } from "@heroicons/react/24/outline";
 
 import { IPost } from "../db/db.types";
 
+import { deletePost } from "../db/posts";
+import { useAuth } from "../context/authContext";
+
 export default function Post(props: IPost) {
-  const { name, message, email, timeStamp, image, postImage } = props;
+  const { userAuth } = useAuth();
+
+  const { id, name, message, timeStamp, image, postImage, email } = props;
+  const handleDeletePost = () => {
+    if (userAuth?.email === email) deletePost(id);
+  };
 
   return (
     <div className="flex flex-col">
       <div className="p-5 bg-white mt-5 rounded-t-2xl shadow-sm">
-        <div className="flex items-center space-x-2">
-          <Image
-            className="rounded-full"
-            src={image}
-            width={40}
-            height={40}
-            alt="post"
-          />
-          <div className="">
-            <p className="font-medium">{name}</p>
-            <p className="text-xs text-gray-400">
-              {timeStamp && new Date(timeStamp.toDate()).toLocaleString()}
-            </p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            {image && (
+              <Image
+                className="rounded-full"
+                src={image}
+                width={40}
+                height={40}
+                alt="post"
+              />
+            )}
+            <div className="">
+              <p className="font-medium">{name}</p>
+              <p className="text-xs text-gray-400">
+                {timeStamp && new Date(timeStamp.toDate()).toLocaleString()}
+              </p>
+            </div>
           </div>
+          {userAuth?.email === email && (
+            <TrashIcon
+              onClick={handleDeletePost}
+              className="h-6 flex cursor-pointer  text-red-600 rounded-full "
+            />
+          )}
         </div>
         <p className="pt-4">{message}</p>
       </div>
