@@ -5,7 +5,7 @@ import { serverTimestamp } from "firebase/firestore";
 import { FaceSmileIcon } from '@heroicons/react/24/outline'
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
 
-import { createPost, createPostImage } from "../db/posts";
+import { createPost } from "../db/posts";
 
 import { IPosts } from "../db/db.types";
 import { useAuth } from "../context/authContext";
