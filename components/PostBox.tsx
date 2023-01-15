@@ -69,7 +69,7 @@ export default function PostBox() {
   };
 
   return (
-    <div className="bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium mt-6">
+    <div className="bg-white sm:p-2 rounded-2xl shadow-md text-gray-500 font-medium mt-6">
       <div className="flex space-x-4 p-4 items-center">
         <Image
           className="rounded-full"
@@ -80,14 +80,17 @@ export default function PostBox() {
         />
         <form ref={formRef} className="flex flex-1" onSubmit={onSubmitHandler}>
           <input
-            className="rounded-full h-12 bg-gray-100 flex-grow px-5 focus:outline:none"
+            className="rounded-full h-12 text-xs sm:text-base bg-gray-100 flex-grow px-5 focus:outline:none"
             type="text"
             ref={inputRef}
-            placeholder={`Whats on your mind, ${userAuth?.displayName}?`}
+            placeholder={`Whats on your mind, ${
+              userAuth?.displayName?.split(" ")[0]
+            }?`}
           />
           <button
             className="bg-gray-100 rounded-full px-4 py-2 text-center"
             type="submit"
+            hidden
           >
             submit
           </button>
@@ -97,8 +100,8 @@ export default function PostBox() {
             onClick={removeImage}
             className="flex flex-col filter hover:brightness-110 transition duration-120 transform hover:scale105 cursor-pointer"
           >
-            <img
-              className="h-10 object-container"
+            <Image
+              className="h-10 object-contain"
               src={imageToPost.src}
               alt="photo"
             />
@@ -109,15 +112,15 @@ export default function PostBox() {
 
       {/* Actions */}
       <div className="flex justify-evenly p-3 border-t">
-        <div className="inputIcon">
-          <VideoCameraIcon className="h-7 text-red-500" />
+        <div className="inputIcon xs:p-0">
+          <VideoCameraIcon className="h-5 sm:h-7 text-red-500" />
           <p className="text-xs sm:text-sm xl:text-base">Live Video</p>
         </div>
         <div
           onClick={() => filePickerRef.current?.click()}
           className="inputIcon"
         >
-          <CameraIcon className="h-7 text-green-400" />
+          <CameraIcon className="h-5 sm:h-7 text-green-400" />
           <p className="text-xs sm:text-sm xl:text-base">Photo/Video</p>
           <input
             ref={filePickerRef}
@@ -127,7 +130,7 @@ export default function PostBox() {
           />
         </div>
         <div className="inputIcon">
-          <FaceSmileIcon className="h-7 text-yellow-300" />
+          <FaceSmileIcon className="h-5 sm:h-7 text-yellow-300" />
           <p className="text-xs sm:text-sm xl:text-base">Feeling/Activity</p>
         </div>
       </div>

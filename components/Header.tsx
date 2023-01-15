@@ -21,7 +21,7 @@ export default function Header() {
       <nav className="sticky top-0 z-50 bg-white justify-between flex items-center p-2 lg:px-5 shadow-md">
         {/* Left */}
         <div className="flex items-center ">
-          <h1 className="text-4xl font-bold ">facebook</h1>
+          <h1 className="text-base sm:text-4xl font-bold ">facebook</h1>
         </div>
         {/* Center */}
         <div className="flex justify-center">
@@ -36,14 +36,14 @@ export default function Header() {
         </div>
 
         {/* Right */}
-        <div className="flex items-center sm:space-x-2 justify-end">
+        <div className="flex gap-1 items-center sm:space-x-2 justify-end">
           {/* Profile pic */}
           <Image
             onClick={signOutHandler}
             className="rounded-full cursor-pointer"
             src={userAuth?.photoURL || ""}
-            width="40"
-            height="40"
+            width="25"
+            height="25"
             alt="profile img"
           />
           <p className="font-semi:bold pr-3 whitespace-nowrap">
