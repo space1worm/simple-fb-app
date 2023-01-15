@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { signOut, useSession } from 'next-auth/react';
 
 import {
     BellIcon,
@@ -20,11 +19,14 @@ import {
 
 import HeaderIcon from "./HeaderIcon";
 
+import { logOut } from "../db/user";
+
+import { useAuth } from "../context/authContext";
+
 export default function Header() {
-    const session = useSession();
-    const signOutHandler = async () => {
-        await signOut();
-    }
+    const { userAuth } = useAuth();
+
+    const signOutHandler = () => logOut();
 
     return <header>
         <nav className="sticky top-0 z-50 bg-white  flex items-center p-2 lg:px-5 shadow-md">
@@ -60,12 +62,12 @@ export default function Header() {
                 <Image
                     onClick={signOutHandler}
                     className="rounded-full cursor-pointer"
-                    src={session.data?.user?.image || ""}
+                    src={userAuth?.photoURL || ''}
                     width="40"
                     height="40"
                     alt="profile img"
                 />
-                <p className="font-semi:bold pr-3 whitespace-nowrap">{session.data?.user?.name}</p>
+                <p className="font-semi:bold pr-3 whitespace-nowrap">{userAuth?.displayName}</p>
                 <Squares2X2Icon className="icon" />
                 <ChatBubbleLeftIcon className="icon" />
                 <BellIcon className="icon" />

@@ -9,6 +9,7 @@ import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
 import { createPost, createPostImage } from "../db/posts";
 
 import { IPosts } from "../db/db.types";
+import { useAuth } from "../context/authContext";
 
 interface Img {
     blob: Blob | null;
@@ -21,7 +22,7 @@ const ImgInitialState: Img = {
 }
 
 export default function PostBox() {
-    const session = useSession();
+    const { userAuth } = useAuth();
     const [imageToPost, setImageToPost] = useState<Img>(ImgInitialState);
     const inputRef = useRef<null | HTMLInputElement>(null);
     const filePickerRef = useRef<null | HTMLInputElement>(null);
@@ -53,9 +54,9 @@ export default function PostBox() {
 
         const payload: IPosts = {
             message: inputRef.current.value,
-            name: session.data?.user?.name || '',
-            email: session.data?.user?.email || '',
-            image: session.data?.user?.image || '',
+            name: userAuth?.displayName || '',
+            email: userAuth?.email || '',
+            image: userAuth?.photoURL || '',
             timeStamp: serverTimestamp()
         }
 
@@ -69,7 +70,7 @@ export default function PostBox() {
             <Image
                 className="rounded-full"
                 alt="User"
-                src={session.data?.user?.image || ''}
+                src={userAuth?.photoURL || ''}
                 width={40}
                 height={40}
             />
@@ -78,7 +79,7 @@ export default function PostBox() {
                     className="rounded-full h-12 bg-gray-100 flex-grow px-5 focus:outline:none"
                     type="text"
                     ref={inputRef}
-                    placeholder={`Whats on your mind, ${session.data?.user?.name}?`} />
+                    placeholder={`Whats on your mind, ${userAuth?.displayName}?`} />
                 <button className="bg-gray-100 rounded-full px-4 py-2 text-center" type="submit">submit</button>
             </form>
             {imageToPost.src && (

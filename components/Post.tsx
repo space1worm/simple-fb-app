@@ -27,7 +27,15 @@ export default function Post(props: IPost) {
             {/* cover image */}
             {postImage && (
                 <div className="relative h-56 md:h-96 bg-white">
-                    <Image src={postImage} alt="post" objectFit="cover" layout="fill" />
+                    <Image
+                        src={postImage}
+                        alt="post"
+                        fill
+                        sizes="(max-width: 768px) 100vw,
+                        (max-width: 1200px) 50vw,
+                        33vw"
+                        style={{ objectFit: 'cover' }}
+                    />
                 </div>
             )}
 

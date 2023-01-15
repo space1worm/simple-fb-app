@@ -16,6 +16,7 @@ export default function StoryCard({ name, src, profile }: IStories) {
                 width={40}
                 height={40}
                 alt="User story"
+                priority={true}
             />
             <Image
                 className="object-cover filter brightness-75 rounded-full lg:rounded-3xl"
@@ -24,6 +25,7 @@ export default function StoryCard({ name, src, profile }: IStories) {
                 height="200"
                 style={{ position: "absolute", width: "100%", height: "100%" }}
                 alt="User story"
+                priority={true}
             />
             <p className="hidden lg:inline-flex absolute font-medium text-white bottom-2 ml-2">{name}</p>
         </div>
