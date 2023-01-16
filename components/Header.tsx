@@ -9,7 +9,7 @@ import {
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import { logOut } from "../db/user";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
   const { userAuth } = useAuth();

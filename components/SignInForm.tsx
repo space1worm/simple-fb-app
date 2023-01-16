@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useState, ChangeEvent, FormEvent } from "react";
 
 import { logIn, signInWithGooglePopup } from "../db/user";
@@ -51,10 +52,12 @@ export default function SignInForm({
             className="group bg-gray-100 min-w-full h-12 px-6 border-2  border-none rounded-lg transition duration-300 hover:bg-black active:bg-black"
           >
             <div className="relative flex items-center justify-center gap-4 w-full">
-              <img
+              <Image
                 className="block absolute left-0 w-5"
                 src="https://tailus.io/sources/blocks/social/preview/images/google.svg"
                 alt="google logo"
+                width={25}
+                height={25}
               />
               <span className="block font-medium tracking-wide text-black text-sm transition duration-300 group-hover:text-white sm:text-base">
                 Sign in with Google
