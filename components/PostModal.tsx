@@ -4,7 +4,7 @@ import autosize from "autosize";
 import Image from "next/image";
 import { XMarkIcon, PhotoIcon } from "@heroicons/react/24/solid";
 
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthenticationContext";
 import { usePortal } from "../context/PortalContext";
 
 import Portal from "./Portal";

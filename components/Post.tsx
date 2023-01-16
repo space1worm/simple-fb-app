@@ -9,7 +9,7 @@ import {
 import { IPost } from "../db/db.types";
 
 import { deletePost } from "../db/posts";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthenticationContext";
 
 export default function Post(props: IPost) {
   const { userAuth } = useAuth();
