@@ -31,6 +31,7 @@ export default function PostModal() {
   const [text, setText] = useState("");
   const [file, setFile] = useState<null | string>(null);
   const [imageToPost, setImageToPost] = useState<Img>(ImgInitialState);
+  const [disabled, setDisalbed] = useState<boolean>(false);
 
   // ref
   const textRef = useRef<null | HTMLTextAreaElement>(null);
@@ -43,6 +44,7 @@ export default function PostModal() {
     setFile(null);
     setText("");
     setIsOpen(false);
+    setDisalbed(false);
     formRef.current?.reset();
   };
 
@@ -75,6 +77,7 @@ export default function PostModal() {
 
   const onSubmitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setDisalbed(true);
 
     if (text.length < 1 && !imageToPost.blob)
       return alert("Nope, fill at least something <3");
@@ -154,6 +157,7 @@ export default function PostModal() {
 
         <button
           type="submit"
+          disabled={disabled}
           className="bg-blue-700 p-2 m-4 rounded font-sm font-bold"
         >
           Post
