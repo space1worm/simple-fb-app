@@ -42,6 +42,7 @@ export default function PostModal() {
     setIsOpen(false);
     setFile(null);
     setText("");
+    setIsOpen(false);
     formRef.current?.reset();
   };
 
@@ -95,7 +96,7 @@ export default function PostModal() {
       <form
         onSubmit={onSubmitHandler}
         ref={formRef}
-        className="flex flex-col gap-y-4 bg-[#242526] py-4 rounded w-3/4 text-white"
+        className="flex flex-col gap-y-4 bg-[#242526] lg:w-1/2 py-4 rounded w-3/4 text-white"
       >
         <div className="w-full shadow-lg  pb-4 pr-4">
           <div className="flex  items-center justify-center">
@@ -103,7 +104,7 @@ export default function PostModal() {
               Create Post
             </h1>
             <XMarkIcon
-              onClick={() => setIsOpen(false)}
+              onClick={resetForm}
               className="h-6 cursor-pointer rounded-full bg-[#3a3b3c]"
             />
           </div>
