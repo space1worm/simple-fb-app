@@ -2,7 +2,6 @@ import { UseFormRegisterReturn } from "react-hook-form";
 import { CheckIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { HTMLInputTypeAttribute } from "react";
 
-("hey");
 interface Props {
   id: string;
   title: string;
