@@ -1,8 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import * as Yup from "yup";
 
-import { useState, ChangeEvent, FormEvent, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 
 import { signUp, signInWithGooglePopup } from "../db/user";
@@ -17,22 +17,24 @@ interface FormInputs {
   email: string;
   password: string;
   confirmPassword: string;
+  terms: boolean;
 }
-const schema = yup
-  .object({
-    email: yup
-      .string()
-      .email("Please provide valid Email")
-      .required("E-mail is required"),
-    password: yup
-      .string()
-      .min(6, "must be minimum 6 characters")
-      .required("Please Enter your password"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Passwords must match"),
-  })
-  .required();
+const schema = Yup.object<Record<keyof FormInputs, Yup.AnySchema>>({
+  email: Yup.string()
+    .email("Please provide valid Email")
+    .required("E-mail is required"),
+  password: Yup.string()
+    .min(6, "must be minimum 6 characters")
+    .required("Please Enter your password"),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref("password"), null],
+    "Passwords must match"
+  ),
+  terms: Yup.boolean().oneOf(
+    [true],
+    "You must accept the terms and conditions"
+  ),
+}).required();
 
 export default function SignUpForm({ openRegisterHandler }: Props) {
   const [submitted, setSubmitted] = useState(false);
@@ -97,7 +99,7 @@ export default function SignUpForm({ openRegisterHandler }: Props) {
               id="email"
               register={register("email")}
               title="Email"
-              type="email"
+              type="text"
               placeholder="example@example.com"
               autoComplete="true"
               errorMsg={errors.email?.message}
@@ -127,7 +129,7 @@ export default function SignUpForm({ openRegisterHandler }: Props) {
           <div className="flex items-start">
             <div className="flex items-center h-5">
               <input
-                ref={checkBoxRef}
+                {...register("terms")}
                 id="terms"
                 aria-describedby="terms"
                 type="checkbox"

@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
+import * as Yup from "yup";
 import Image from "next/image";
 
 import { logIn, signInWithGooglePopup } from "../db/user";
@@ -15,18 +15,15 @@ interface FormInputs {
   email: string;
   password: string;
 }
-const schema = yup
-  .object({
-    email: yup
-      .string()
-      .email("Please provide valid Email")
-      .required("E-mail is required"),
-    password: yup
-      .string()
-      .min(6, "must be minimum 6 characters")
-      .required("Please Enter your password"),
-  })
-  .required();
+
+const schema = Yup.object<Record<keyof FormInputs, Yup.AnySchema>>({
+  email: Yup.string()
+    .email("Please provide valid Email")
+    .required("E-mail is required"),
+  password: Yup.string()
+    .min(6, "must be minimum 6 characters")
+    .required("Please Enter your password"),
+});
 
 export default function SignInForm({ openRegisterHandler }: Props) {
   const [submitted, setSubmitted] = useState(false);
