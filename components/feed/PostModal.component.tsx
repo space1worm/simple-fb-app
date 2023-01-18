@@ -7,7 +7,7 @@ import { XMarkIcon, PhotoIcon } from "@heroicons/react/24/solid";
 import { useAuth } from "../../hooks/auth.context.hooks";
 import { usePortal } from "../../hooks/portal.context.hooks";
 
-import Portal from "../Portal";
+import Portal from "../Portal.component";
 
 import { createPost } from "../../lib/posts";
 import { IPosts } from "../../types/db/db.interface";
