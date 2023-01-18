@@ -6,38 +6,38 @@ import { IPosts } from "../types/db/db.interface";
 import { TImgFile } from "../types/db/db.types";
 
 export const createPostImage = async (docId: string, file: TImgFile) => {
-  const storageRef = ref(firebaseStorage, `posts/${docId}`);
-  const uploadTask = uploadBytesResumable(storageRef, file, {
-    contentType: "image/jpeg",
-  });
+    const storageRef = ref(firebaseStorage, `posts/${docId}`);
+    const uploadTask = uploadBytesResumable(storageRef, file, {
+        contentType: "image/jpeg",
+    });
 
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {
-      const p = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      if (p == 99) console.log("Upload is " + p + "% done");
-    },
-    (error) => console.log(error.code),
-    () => {
-      getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
-        const currentPost = doc(firebaseDB, "posts", docId);
-        await setDoc(currentPost, { postImage: url }, { merge: true });
-      });
-    }
-  );
+    uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+            const p = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            if (p == 99) console.log("Upload is " + p + "% done");
+        },
+        (error) => console.log(error.code),
+        () => {
+            getDownloadURL(uploadTask.snapshot.ref).then(async (url) => {
+                const currentPost = doc(firebaseDB, "posts", docId);
+                await setDoc(currentPost, { postImage: url }, { merge: true });
+            });
+        }
+    );
 };
 
 //code inside component
 export const createPost = async (payload: IPosts, file: TImgFile | null) => {
-  const postsCollectionRef = collection(firebaseDB, "posts");
-  const responce = await addDoc(postsCollectionRef, payload);
+    const postsCollectionRef = collection(firebaseDB, "posts");
+    const responce = await addDoc(postsCollectionRef, payload);
 
-  if (file) await createPostImage(responce.id, file);
-  return responce;
+    if (file) await createPostImage(responce.id, file);
+    return responce;
 };
 
 export const deletePost = async (id: string) => {
-  const docRef = doc(firebaseDB, "posts", id);
-  const res = await deleteDoc(docRef);
-  return res;
+    const docRef = doc(firebaseDB, "posts", id);
+    const res = await deleteDoc(docRef);
+    return res;
 };
