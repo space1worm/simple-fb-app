@@ -33,7 +33,7 @@
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
-        "project": "./tsconfig.json"
+        "project": "packages/*/tsconfig.json"
       }
     }
   },
