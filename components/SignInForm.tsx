@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import InputField from "./InputField";
 
-import { logIn, signInWithGooglePopup } from "../db/auth";
+import { logIn, signInWithGooglePopup } from "../lib/authentication";
 import { SignInSchema } from "../lib/validation";
 import { SignInFormInputs } from "../types/app.types";
 

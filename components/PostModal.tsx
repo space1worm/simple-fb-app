@@ -9,7 +9,7 @@ import { usePortal } from "../context/PortalContext";
 
 import Portal from "./Portal";
 
-import { createPost } from "../db/posts";
+import { createPost } from "../lib/posts";
 import { IPosts } from "../types/db.types";
 
 interface Istate {

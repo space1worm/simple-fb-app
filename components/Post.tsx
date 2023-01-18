@@ -9,7 +9,7 @@ import {
 import { useAuth } from "../context/AuthenticationContext";
 
 import { IPost } from "../types/db.types";
-import { deletePost } from "../db/posts";
+import { deletePost } from "../lib/posts";
 
 export default function Post({
   id,

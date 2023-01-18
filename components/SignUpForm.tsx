@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import InputField from "./InputField";
 
-import { signUp, signInWithGooglePopup } from "../db/auth";
+import { signUp, signInWithGooglePopup } from "../lib/authentication";
 import { SignUpFormInputs } from "../types/app.types";
 import { SignUpSchema } from "../lib/validation";
 
