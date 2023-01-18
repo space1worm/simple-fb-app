@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { IStories } from "../types/app.types";
+import { IStories } from "../types/app.interfaces";
 
 export default function StoryCard({
   name,

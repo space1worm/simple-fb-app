@@ -6,7 +6,7 @@ import {
 
 import Contact from "./Contact";
 
-import { IContacts } from "../types/app.types";
+import { IContacts } from "../types/app.interfaces";
 
 const contacts: IContacts[] = [
   { src: "https://links.papareact.com/f0p", name: "Jeff Bezos" },

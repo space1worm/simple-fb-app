@@ -4,13 +4,13 @@ import autosize from "autosize";
 import Image from "next/image";
 import { XMarkIcon, PhotoIcon } from "@heroicons/react/24/solid";
 
-import { useAuth } from "../context/AuthenticationContext";
-import { usePortal } from "../context/PortalContext";
+import { useAuth } from "../hooks/auth.context.hooks";
+import { usePortal } from "../hooks/portal.context.hooks";
 
 import Portal from "./Portal";
 
 import { createPost } from "../lib/posts";
-import { IPosts } from "../types/db.types";
+import { IPosts } from "../types/db.interface";
 
 interface Istate {
   blob: Blob | null;

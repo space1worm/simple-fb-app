@@ -6,7 +6,7 @@ import Login from "../components/Login";
 import Feed from "../components/Feed";
 import Widgets from "../components/Widgets";
 
-import { useAuth } from "../context/AuthenticationContext";
+import { useAuth } from "../hooks/auth.context.hooks";
 import PostModal from "../components/PostModal";
 
 export default function Home() {

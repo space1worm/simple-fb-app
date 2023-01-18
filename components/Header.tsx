@@ -7,7 +7,7 @@ import {
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
 import { logOut } from "../lib/authentication";
-import { useAuth } from "../context/AuthenticationContext";
+import { useAuth } from "../hooks/auth.context.hooks";
 
 export default function Header(): JSX.Element {
   const { userAuth } = useAuth();

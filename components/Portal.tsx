@@ -1,7 +1,7 @@
 import { useRef, useEffect, ReactNode, useState, ReactPortal } from "react";
 import { createPortal } from "react-dom";
 
-import { usePortal } from "../context/PortalContext";
+import { usePortal } from "../hooks/portal.context.hooks";
 
 interface PortalProps {
   children: ReactNode;

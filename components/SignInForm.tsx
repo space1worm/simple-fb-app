@@ -7,7 +7,7 @@ import InputField from "./InputField";
 
 import { logIn, signInWithGooglePopup } from "../lib/authentication";
 import { SignInSchema } from "../lib/validation";
-import { SignInFormInputs } from "../types/app.types";
+import { ISignInFormInputs } from "../types/app.interfaces";
 
 interface Props {
   openRegisterHandler: () => void;
@@ -21,12 +21,12 @@ export default function SignInForm({
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
-  } = useForm<SignInFormInputs>({
+  } = useForm<ISignInFormInputs>({
     mode: "onChange",
     resolver: yupResolver(SignInSchema),
   });
 
-  const onSubmit = async (data: SignInFormInputs) => {
+  const onSubmit = async (data: ISignInFormInputs) => {
     setSubmitted(true);
     try {
       const res = await logIn(data.email, data.password);

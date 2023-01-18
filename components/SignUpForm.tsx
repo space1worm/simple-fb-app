@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import InputField from "./InputField";
 
 import { signUp, signInWithGooglePopup } from "../lib/authentication";
-import { SignUpFormInputs } from "../types/app.types";
+import { ISignUpFormInputs } from "../types/app.interfaces";
 import { SignUpSchema } from "../lib/validation";
 
 interface Props {
@@ -22,12 +22,12 @@ export default function SignUpForm({
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
-  } = useForm<SignUpFormInputs>({
+  } = useForm<ISignUpFormInputs>({
     mode: "onChange",
     resolver: yupResolver(SignUpSchema),
   });
 
-  const onSubmit = async (data: SignUpFormInputs) => {
+  const onSubmit = async (data: ISignUpFormInputs) => {
     setSubmitted(true);
     try {
       const res = await signUp(data.email, data.password);

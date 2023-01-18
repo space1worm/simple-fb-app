@@ -1,6 +1,6 @@
 import StoryCard from "./StoryCard";
 
-import { IStories } from "../types/app.types";
+import { IStories } from "../types/app.interfaces";
 
 const stories: IStories[] = [
   {
