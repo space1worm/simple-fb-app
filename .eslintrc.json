@@ -39,6 +39,9 @@
   },
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
-    "import/no-unresolved": "error"
+    "import/no-unresolved": "error",
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2
   }
 }
