@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^2.9.10",
     "@next/eslint-plugin-next": "^13.1.2",
     "autosize": "^5.0.2",
+    "eslint-plugin-import": "^2.27.5",
     "firebase": "^9.15.0",
     "next": "latest",
     "react": "18.2.0",
