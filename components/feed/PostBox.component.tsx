@@ -2,10 +2,10 @@ import Image from "next/image";
 import { FaceSmileIcon } from "@heroicons/react/24/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
 
-import { useAuth } from "../hooks/auth.context.hooks";
-import { usePortal } from "../hooks/portal.context.hooks";
+import { useAuth } from "../../hooks/auth.context.hooks";
+import { usePortal } from "../../hooks/portal.context.hooks";
 
-import PostBoxIcon from "./PostBoxIcon";
+import PostBoxIcon from "./PostBoxIcon.component";
 
 export default function PostBox(): JSX.Element {
   const { userAuth } = useAuth();

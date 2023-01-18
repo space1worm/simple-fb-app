@@ -1,18 +1,23 @@
+import { useRouter } from "next/router";
 import Head from "next/head";
 
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import Login from "../components/Login";
-import Feed from "../components/Feed";
-import Widgets from "../components/Widgets";
+import Header from "../components/header/Header.component";
+import Sidebar from "../components/sidebar/Sidebar.component";
+import Feed from "../components/feed/Feed.component";
+import Contacts from "../components/contacts/Contacts.component";
+import PostModal from "../components/feed/PostModal.component";
 
 import { useAuth } from "../hooks/auth.context.hooks";
-import PostModal from "../components/PostModal";
+import { useEffect } from "react";
+
 
 export default function Home() {
   const { userAuth } = useAuth();
+  const router = useRouter();
 
-  if (!userAuth) return <Login />;
+  useEffect(() => {
+    if (!userAuth) router.push('login');
+  }, [userAuth, router])
 
   return (
     <div className="h-screen bg-gray-100 overflow-hidden">
@@ -25,7 +30,7 @@ export default function Home() {
         <PostModal />
         <Sidebar />
         <Feed />
-        <Widgets />
+        <Contacts />
       </main>
     </div>
   );

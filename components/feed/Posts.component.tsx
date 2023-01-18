@@ -2,10 +2,10 @@ import { collection } from "firebase/firestore";
 import { DocumentData, query, orderBy } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
-import { firebaseDB } from "../firebase";
-import { IPost } from "../types/db/db.interface";
+import { firebaseDB } from "../../firebase";
+import { IPost } from "../../types/db/db.interface";
 
-import Post from "./Post";
+import Post from "./Post.component";
 
 export default function Posts(): JSX.Element {
   const postsRef = collection(firebaseDB, "posts");

@@ -5,7 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { CalendarIcon, ClockIcon, UsersIcon } from "@heroicons/react/24/solid";
 
-import SidebarRow from "./SidebarRow";
+import SidebarRow from "./SidebarRow.component";
 
 export default function Sidebar(): JSX.Element {
   return (

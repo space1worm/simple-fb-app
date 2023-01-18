@@ -4,13 +4,13 @@ import autosize from "autosize";
 import Image from "next/image";
 import { XMarkIcon, PhotoIcon } from "@heroicons/react/24/solid";
 
-import { useAuth } from "../hooks/auth.context.hooks";
-import { usePortal } from "../hooks/portal.context.hooks";
+import { useAuth } from "../../hooks/auth.context.hooks";
+import { usePortal } from "../../hooks/portal.context.hooks";
 
-import Portal from "./Portal";
+import Portal from "../Portal";
 
-import { createPost } from "../lib/posts";
-import { IPosts } from "../types/db/db.interface";
+import { createPost } from "../../lib/posts";
+import { IPosts } from "../../types/db/db.interface";
 
 interface Istate {
   blob: Blob | null;
@@ -127,9 +127,8 @@ export default function PostModal(): JSX.Element {
           <textarea
             className="flex px-2 resize-none overflow-hidden break-words flex-col rounded-sm bg-transparent sm:text-base active:outline-none focus:outline-none"
             ref={textRef}
-            placeholder={`Whats on your mind, ${
-              userAuth?.displayName?.split(" ")[0]
-            }?`}
+            placeholder={`Whats on your mind, ${userAuth?.displayName?.split(" ")[0]
+              }?`}
             onChange={onTextChange}
             value={text}
           />

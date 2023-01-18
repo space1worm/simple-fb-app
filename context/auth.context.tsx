@@ -5,11 +5,15 @@ import { firebaseAuth } from "../firebase";
 import { TChildren } from "../types/app/app.types";
 import { IUserContext } from "../types/app/app.interfaces";
 
+interface Props {
+  children: TChildren
+}
+
 export const AuthContext = createContext<IUserContext>({
   userAuth: null,
 });
 
-export const AuthContextProvider = ({ children }: { children: TChildren }) => {
+export const AuthContextProvider = ({ children }: Props) => {
   const [userAuth, setUserAuth] = useState<null | User>(null);
 
   useEffect(() => {
@@ -23,5 +27,7 @@ export const AuthContextProvider = ({ children }: { children: TChildren }) => {
     userAuth,
   };
 
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={values}>
+    {children}
+  </AuthContext.Provider>;
 };

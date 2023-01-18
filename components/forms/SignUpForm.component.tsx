@@ -1,43 +1,47 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
-import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
-import InputField from "./InputField";
+import InputField from "./InputField.component";
 
-import { logIn, signInWithGooglePopup } from "../lib/authentication";
-import { SignInSchema } from "../lib/validation";
-import { ISignInFormInputs } from "../types/app/app.interfaces";
+import { signUp, signInWithGooglePopup } from "../../lib/authentication";
+import { ISignUpFormInputs } from "../../types/app/app.interfaces";
+import { SignUpSchema } from "../../lib/validation";
 
 interface Props {
   openRegisterHandler: () => void;
 }
 
-export default function SignInForm({
+export default function SignUpForm({
   openRegisterHandler,
 }: Props): JSX.Element {
   const [submitted, setSubmitted] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
-  } = useForm<ISignInFormInputs>({
+  } = useForm<ISignUpFormInputs>({
     mode: "onChange",
-    resolver: yupResolver(SignInSchema),
+    resolver: yupResolver(SignUpSchema),
   });
 
-  const onSubmit = async (data: ISignInFormInputs) => {
+  const onSubmit = async (data: ISignUpFormInputs) => {
     setSubmitted(true);
     try {
-      const res = await logIn(data.email, data.password);
+      const res = await signUp(data.email, data.password);
       console.log(res);
-      setSubmitted(false);
     } catch (e) {
       console.log(e);
-      setSubmitted(false);
     }
   };
-  const handleGoogleSignIn = async () => {
+
+  const checkBoxRef = useRef<null | HTMLInputElement>(null);
+
+  const handleGoogleSignUp = async () => {
+    if (!checkBoxRef.current?.checked) return alert("nope");
+
     const resp = await signInWithGooglePopup();
     console.log(resp);
   };
@@ -46,11 +50,11 @@ export default function SignInForm({
     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 className="text-xl font-bold text-center leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Sign in
+          Create account
         </h1>
         <div className="flex items-center flex-col space-y-4">
           <button
-            onClick={handleGoogleSignIn}
+            onClick={handleGoogleSignUp}
             className="group bg-gray-100 min-w-full h-12 px-6 border-2  border-none rounded-lg transition duration-300 hover:bg-black active:bg-black"
           >
             <div className="relative flex items-center justify-center gap-4 w-full">
@@ -62,7 +66,7 @@ export default function SignInForm({
                 height={25}
               />
               <span className="block font-medium tracking-wide text-black text-sm transition duration-300 group-hover:text-white sm:text-base">
-                Sign in with Google
+                Sign up with Google
               </span>
             </div>
           </button>
@@ -74,28 +78,62 @@ export default function SignInForm({
         >
           <div className="flex flex-col gap-2">
             <InputField
-              register={register("email", { required: true, minLength: 6 })}
               id="email"
-              type="text"
+              register={register("email")}
               title="Email"
+              type="text"
               placeholder="example@example.com"
               autoComplete="true"
               errorMsg={errors.email?.message}
               isDirty={dirtyFields.email}
             />
-
             <InputField
-              register={register("password", { required: true, minLength: 6 })}
               id="password"
-              type="password"
+              register={register("password")}
               title="Password"
+              type="password"
               placeholder="••••••••"
               autoComplete="true"
               errorMsg={errors.password?.message}
               isDirty={dirtyFields.password}
             />
+            <InputField
+              id="confirmPassword"
+              register={register("confirmPassword")}
+              title="Confirm Password"
+              type="password"
+              placeholder="••••••••"
+              autoComplete="true"
+              errorMsg={errors.confirmPassword?.message}
+              isDirty={dirtyFields.confirmPassword}
+            />
           </div>
-
+          <div className="flex items-start">
+            <div className="flex items-center h-5">
+              <input
+                {...register("terms")}
+                id="terms"
+                aria-describedby="terms"
+                type="checkbox"
+                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                required={true}
+              />
+            </div>
+            <div className="ml-3 text-sm">
+              <label
+                htmlFor="terms"
+                className="font-light text-gray-500 dark:text-gray-300"
+              >
+                I accept the{" "}
+                <a
+                  className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  href="#"
+                >
+                  Terms and Conditions
+                </a>
+              </label>
+            </div>
+          </div>
           <button
             type="submit"
             className="w-full text-white  bg-gray-900 hover:bg-primary-700 hover:bg-black focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
@@ -119,14 +157,13 @@ export default function SignInForm({
                 />
               </svg>
             )}
-            Log In
+            Create an account
           </button>
-
           <button
             onClick={openRegisterHandler}
-            className="text-sm hover:underline font-light text-gray-500 dark:text-gray-400"
+            className="text-sm font-light text-gray-500 hover:underline dark:text-gray-400"
           >
-            {`Don't`} have an account?
+            Already have an account?
           </button>
         </form>
       </div>

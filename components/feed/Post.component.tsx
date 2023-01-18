@@ -6,10 +6,10 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-import { useAuth } from "../hooks/auth.context.hooks";
+import { useAuth } from "../../hooks/auth.context.hooks";
 
-import { IPost } from "../types/db/db.interface";
-import { deletePost } from "../lib/posts";
+import { IPost } from "../../types/db/db.interface";
+import { deletePost } from "../../lib/posts";
 
 export default function Post({
   id,

@@ -1,6 +1,6 @@
-import Stories from "./Stories";
-import PostBox from "./PostBox";
-import Posts from "./Posts";
+import Stories from "../story/Stories.component";
+import PostBox from "./PostBox.component";
+import Posts from "./Posts.component";
 
 export default function Feed(): JSX.Element {
   return (

@@ -4,9 +4,9 @@ import {
   EllipsisHorizontalIcon,
 } from "@heroicons/react/24/solid";
 
-import Contact from "./Contact";
+import Contact from "./Contact.component";
 
-import { IContacts } from "../types/app/app.interfaces";
+import { IContacts } from "../../types/app/app.interfaces";
 
 const contacts: IContacts[] = [
   { src: "https://links.papareact.com/f0p", name: "Jeff Bezos" },
@@ -18,7 +18,7 @@ const contacts: IContacts[] = [
   { src: "https://links.papareact.com/r57", name: "James Bond" },
 ];
 
-export default function Widgets(): JSX.Element {
+export default function Contacts(): JSX.Element {
   return (
     <div className="hidden lg:flex flex-col w-60 p-2 mt-5">
       <div className="flex justify-between items-center text-gray-500 mb-5">
