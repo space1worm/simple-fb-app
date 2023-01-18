@@ -34,7 +34,8 @@
       "typescript": {
         "alwaysTryTypes": true,
         "project": "packages/*/tsconfig.json"
-      }
+      },
+      "node": true
     }
   },
   "rules": {
