@@ -29,6 +29,7 @@ export const signInWithGooglePopup = async () => {
     const token = credential?.accessToken;
     const user = result.user;
     return { user, token };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     const errorCode = error.code;
     const errorMessage = error.message;
