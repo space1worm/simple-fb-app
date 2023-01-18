@@ -1,1 +1,1 @@
-export type AARImgFile = Blob | Uint8Array | ArrayBuffer;
+export type TImgFile = Blob | Uint8Array | ArrayBuffer;
