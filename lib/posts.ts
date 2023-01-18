@@ -5,8 +5,7 @@ import { firebaseDB, firebaseStorage } from "../firebase";
 import { IPosts } from "../types/db/db.interface";
 import { TImgFile } from "../types/db/db.types";
 
-let a = 9;
-console.log(a);
+console.log("123");
 
 export const createPostImage = async (docId: string, file: TImgFile) => {
   const storageRef = ref(firebaseStorage, `posts/${docId}`);
