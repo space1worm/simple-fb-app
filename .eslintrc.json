@@ -22,6 +22,7 @@
   "settings": {
     "import/parsers": {
       "typescript": true,
+      "node": true,
       "@typescript-eslint/parser": [
         ".ts",
         ".tsx"
