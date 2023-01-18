@@ -10,14 +10,13 @@ import PostModal from "../components/feed/PostModal.component";
 import { useAuth } from "../hooks/auth.context.hooks";
 import { useEffect } from "react";
 
-
 export default function Home() {
   const { userAuth } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!userAuth) router.push('login');
-  }, [userAuth, router])
+    if (!userAuth) router.push("login");
+  }, [userAuth, router]);
 
   return (
     <div className="h-screen bg-gray-100 overflow-hidden">
