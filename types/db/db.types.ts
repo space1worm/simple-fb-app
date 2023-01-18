@@ -1,1 +1,1 @@
-export type A3mgFile = Blob | Uint8Array | ArrayBuffer;
+export type AzagFile = Blob | Uint8Array | ArrayBuffer;
