@@ -19,7 +19,7 @@ export const logIn = async (email: string, password: string) => {
 };
 
 export const logOut = async () => {
-  await signOut(firebaseAuth);
+  return await signOut(firebaseAuth);
 };
 
 export const signInWithGooglePopup = async () => {

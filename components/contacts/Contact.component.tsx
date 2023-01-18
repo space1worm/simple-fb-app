@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-interface Props {
+export interface Props {
   name: string;
   src: string;
 }
