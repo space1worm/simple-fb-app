@@ -3,23 +3,30 @@
     "browser": true,
     "node": true
   },
-  "parser": "@typescript-eslint/parser",
   "extends": [
     "next/core-web-vitals",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
     "plugin:import/typescript",
     "prettier",
     "next"
   ],
+  "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint",
     "import",
     "react"
   ],
   "settings": {
+    "import/extensions": [
+      ".js",
+      ".jsx",
+      ".ts",
+      ".tsx"
+    ],
     "import/parsers": {
       "@typescript-eslint/parser": [
         ".ts",
@@ -30,10 +37,28 @@
       "typescript": {
         "alwaysTryTypes": true,
         "project": "./tsconfig.json"
+      },
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     }
   },
   "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "@typescript-eslint/no-unused-vars": "error",
     "import/no-unresolved": "error"
   },

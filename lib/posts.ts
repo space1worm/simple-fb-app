@@ -3,9 +3,9 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { firebaseDB, firebaseStorage } from "../firebase";
 import { IPosts } from "../types/db/db.interface";
-import { TIamgFile } from "../types/db/db.types";
+import { TImgFile } from "../types/db/db.types";
 
-export const createPostImage = async (docId: string, file: TIamgFile) => {
+export const createPostImage = async (docId: string, file: TImgFile) => {
   const storageRef = ref(firebaseStorage, `posts/${docId}`);
   const uploadTask = uploadBytesResumable(storageRef, file, {
     contentType: "image/jpeg",
