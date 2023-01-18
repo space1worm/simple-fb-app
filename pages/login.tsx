@@ -16,7 +16,8 @@ export default function Login(): JSX.Element {
     useEffect(() => {
         if (userAuth) router.push('/');
         else router.push('login');
-    }, [userAuth, router])
+
+    }, [userAuth])
 
     return (
         <section
