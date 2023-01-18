@@ -2,8 +2,8 @@ import React, { createContext, useEffect, useState } from "react";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { firebaseAuth } from "../firebase";
 
-import { TChildren } from "../types/app.types";
-import { IUserContext } from "../types/app.interfaces";
+import { TChildren } from "../types/app/app.types";
+import { IUserContext } from "../types/app/app.interfaces";
 
 export const AuthContext = createContext<IUserContext>({
   userAuth: null,

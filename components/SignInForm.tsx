@@ -7,7 +7,7 @@ import InputField from "./InputField";
 
 import { logIn, signInWithGooglePopup } from "../lib/authentication";
 import { SignInSchema } from "../lib/validation";
-import { ISignInFormInputs } from "../types/app.interfaces";
+import { ISignInFormInputs } from "../types/app/app.interfaces";
 
 interface Props {
   openRegisterHandler: () => void;

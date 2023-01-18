@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
-import { IPortalContext } from "../types/app.interfaces";
-import { TChildren } from "../types/app.types";
+import { IPortalContext } from "../types/app/app.interfaces";
+import { TChildren } from "../types/app/app.types";
 
 export const PortalContext = createContext<IPortalContext>(
   {} as IPortalContext

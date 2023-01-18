@@ -10,7 +10,7 @@ import { usePortal } from "../hooks/portal.context.hooks";
 import Portal from "./Portal";
 
 import { createPost } from "../lib/posts";
-import { IPosts } from "../types/db.interface";
+import { IPosts } from "../types/db/db.interface";
 
 interface Istate {
   blob: Blob | null;

@@ -2,9 +2,10 @@ import { collection, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { firebaseDB, firebaseStorage } from "../firebase";
-import { IPosts, ImgFile } from "../types/db.types";
+import { IPosts } from "../types/db/db.interface";
+import { TImgFile } from "../types/db/db.types";
 
-export const createPostImage = async (docId: string, file: ImgFile) => {
+export const createPostImage = async (docId: string, file: TImgFile) => {
   const storageRef = ref(firebaseStorage, `posts/${docId}`);
   const uploadTask = uploadBytesResumable(storageRef, file, {
     contentType: "image/jpeg",
@@ -27,7 +28,7 @@ export const createPostImage = async (docId: string, file: ImgFile) => {
 };
 
 //code inside component
-export const createPost = async (payload: IPosts, file: ImgFile | null) => {
+export const createPost = async (payload: IPosts, file: TImgFile | null) => {
   const postsCollectionRef = collection(firebaseDB, "posts");
   const responce = await addDoc(postsCollectionRef, payload);
 

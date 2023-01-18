@@ -8,7 +8,7 @@ import {
 
 import { useAuth } from "../hooks/auth.context.hooks";
 
-import { IPost } from "../types/db.interface";
+import { IPost } from "../types/db/db.interface";
 import { deletePost } from "../lib/posts";
 
 export default function Post({

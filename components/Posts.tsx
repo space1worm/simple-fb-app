@@ -3,7 +3,7 @@ import { DocumentData, query, orderBy } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 import { firebaseDB } from "../firebase";
-import { IPost } from "../types/db.interface";
+import { IPost } from "../types/db/db.interface";
 
 import Post from "./Post";
 

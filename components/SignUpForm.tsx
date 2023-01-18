@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import InputField from "./InputField";
 
 import { signUp, signInWithGooglePopup } from "../lib/authentication";
-import { ISignUpFormInputs } from "../types/app.interfaces";
+import { ISignUpFormInputs } from "../types/app/app.interfaces";
 import { SignUpSchema } from "../lib/validation";
 
 interface Props {
