@@ -1,1 +1,1 @@
-export type AzagFile = Blob | Uint8Array | ArrayBuffer;
+export type AqgFile = Blob | Uint8Array | ArrayBuffer;
