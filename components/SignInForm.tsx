@@ -1,29 +1,17 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as Yup from "yup";
+import { useState } from "react";
 import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+import InputField from "./InputField";
 
 import { logIn, signInWithGooglePopup } from "../db/auth";
-import InputField from "./InputField";
-import { useState } from "react";
+import { SignInSchema } from "../lib/validation";
+import { SignInFormInputs } from "../types/app.types";
 
 interface Props {
   openRegisterHandler: () => void;
 }
-
-interface FormInputs {
-  email: string;
-  password: string;
-}
-
-const schema = Yup.object<Record<keyof FormInputs, Yup.AnySchema>>({
-  email: Yup.string()
-    .email("Please provide valid Email")
-    .required("E-mail is required"),
-  password: Yup.string()
-    .min(6, "must be minimum 6 characters")
-    .required("Please Enter your password"),
-});
 
 export default function SignInForm({
   openRegisterHandler,
@@ -33,9 +21,12 @@ export default function SignInForm({
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
-  } = useForm<FormInputs>({ mode: "onChange", resolver: yupResolver(schema) });
+  } = useForm<SignInFormInputs>({
+    mode: "onChange",
+    resolver: yupResolver(SignInSchema),
+  });
 
-  const onSubmit = async (data: FormInputs) => {
+  const onSubmit = async (data: SignInFormInputs) => {
     setSubmitted(true);
     try {
       const res = await logIn(data.email, data.password);

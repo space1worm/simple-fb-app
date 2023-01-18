@@ -1,10 +1,6 @@
 import StoryCard from "./StoryCard";
 
-export interface IStories {
-  name: string;
-  src: string;
-  profile: string;
-}
+import { IStories } from "../types/app.types";
 
 const stories: IStories[] = [
   {

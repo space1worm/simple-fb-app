@@ -1,40 +1,17 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
-import * as Yup from "yup";
-
 import { useState, useRef } from "react";
 import Image from "next/image";
-
-import { signUp, signInWithGooglePopup } from "../db/auth";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
 
 import InputField from "./InputField";
+
+import { signUp, signInWithGooglePopup } from "../db/auth";
+import { SignUpFormInputs } from "../types/app.types";
+import { SignUpSchema } from "../lib/validation";
 
 interface Props {
   openRegisterHandler: () => void;
 }
-
-interface FormInputs {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  terms: boolean;
-}
-const schema = Yup.object<Record<keyof FormInputs, Yup.AnySchema>>({
-  email: Yup.string()
-    .email("Please provide valid Email")
-    .required("E-mail is required"),
-  password: Yup.string()
-    .min(6, "must be minimum 6 characters")
-    .required("Please Enter your password"),
-  confirmPassword: Yup.string().oneOf(
-    [Yup.ref("password"), null],
-    "Passwords must match"
-  ),
-  terms: Yup.boolean().oneOf(
-    [true],
-    "You must accept the terms and conditions"
-  ),
-}).required();
 
 export default function SignUpForm({
   openRegisterHandler,
@@ -45,9 +22,12 @@ export default function SignUpForm({
     register,
     handleSubmit,
     formState: { errors, dirtyFields },
-  } = useForm<FormInputs>({ mode: "onChange", resolver: yupResolver(schema) });
+  } = useForm<SignUpFormInputs>({
+    mode: "onChange",
+    resolver: yupResolver(SignUpSchema),
+  });
 
-  const onSubmit = async (data: FormInputs) => {
+  const onSubmit = async (data: SignUpFormInputs) => {
     setSubmitted(true);
     try {
       const res = await signUp(data.email, data.password);

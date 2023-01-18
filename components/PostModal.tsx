@@ -12,12 +12,12 @@ import Portal from "./Portal";
 import { createPost } from "../db/posts";
 import { IPosts } from "../types/db.types";
 
-interface Img {
+interface Istate {
   blob: Blob | null;
   src: string | null;
 }
 
-const ImgInitialState: Img = {
+const initialState: Istate = {
   blob: null,
   src: null,
 };
@@ -30,7 +30,7 @@ export default function PostModal(): JSX.Element {
   // state
   const [text, setText] = useState("");
   const [file, setFile] = useState<null | string>(null);
-  const [imageToPost, setImageToPost] = useState<Img>(ImgInitialState);
+  const [imageToPost, setImageToPost] = useState<Istate>(initialState);
   const [disabled, setDisalbed] = useState<boolean>(false);
 
   // ref
@@ -39,7 +39,7 @@ export default function PostModal(): JSX.Element {
   const formRef = useRef<null | HTMLFormElement>(null);
 
   const resetForm = () => {
-    setImageToPost(ImgInitialState);
+    setImageToPost(initialState);
     setIsOpen(false);
     setFile(null);
     setText("");

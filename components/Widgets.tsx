@@ -6,7 +6,9 @@ import {
 
 import Contact from "./Contact";
 
-const contacts = [
+import { IContacts } from "../types/app.types";
+
+const contacts: IContacts[] = [
   { src: "https://links.papareact.com/f0p", name: "Jeff Bezos" },
   { src: "https://links.papareact.com/kxk", name: "Elon Musk" },
   { src: "https://links.papareact.com/zvy", name: "Bill Gates" },
