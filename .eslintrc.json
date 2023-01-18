@@ -11,6 +11,8 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/typescript",
+    "plugin:import/errors",
+    "plugin:import/warnings",
     "prettier",
     "next"
   ],
@@ -21,8 +23,6 @@
   ],
   "settings": {
     "import/parsers": {
-      "typescript": true,
-      "node": true,
       "@typescript-eslint/parser": [
         ".ts",
         ".tsx"
