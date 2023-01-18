@@ -1,17 +1,15 @@
 import Image from "next/image";
-
 import {
   BellIcon,
   ChevronDownIcon,
   ChatBubbleLeftIcon,
 } from "@heroicons/react/24/solid";
-
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-import { logOut } from "../db/user";
+import { logOut } from "../db/auth";
 import { useAuth } from "../context/AuthenticationContext";
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const { userAuth } = useAuth();
 
   const signOutHandler = () => logOut();

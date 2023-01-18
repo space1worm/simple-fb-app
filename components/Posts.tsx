@@ -1,17 +1,13 @@
 import { collection } from "firebase/firestore";
+import { DocumentData, query, orderBy } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 
-import { DocumentData } from "firebase/firestore";
-
-import { query, orderBy } from "firebase/firestore";
-
 import { firebaseDB } from "../firebase";
-
-import { IPost } from "../db/db.types";
+import { IPost } from "../types/db.types";
 
 import Post from "./Post";
 
-export default function Posts() {
+export default function Posts(): JSX.Element {
   const postsRef = collection(firebaseDB, "posts");
   const q = query(postsRef, orderBy("timeStamp", "desc"));
 

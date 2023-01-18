@@ -2,16 +2,13 @@ import { collection, addDoc, doc, setDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 import { firebaseDB, firebaseStorage } from "../firebase";
-
-import { IPosts, ImgFile } from "./db.types";
-
-const metadata = {
-  contentType: "image/jpeg",
-};
+import { IPosts, ImgFile } from "../types/db.types";
 
 export const createPostImage = async (docId: string, file: ImgFile) => {
   const storageRef = ref(firebaseStorage, `posts/${docId}`);
-  const uploadTask = uploadBytesResumable(storageRef, file, metadata);
+  const uploadTask = uploadBytesResumable(storageRef, file, {
+    contentType: "image/jpeg",
+  });
 
   uploadTask.on(
     "state_changed",

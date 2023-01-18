@@ -10,7 +10,7 @@ import { usePortal } from "../context/PortalContext";
 import Portal from "./Portal";
 
 import { createPost } from "../db/posts";
-import { IPosts } from "../db/db.types";
+import { IPosts } from "../types/db.types";
 
 interface Img {
   blob: Blob | null;
@@ -22,7 +22,7 @@ const ImgInitialState: Img = {
   src: null,
 };
 
-export default function PostModal() {
+export default function PostModal(): JSX.Element {
   // context
   const { userAuth } = useAuth();
   const { setIsOpen } = usePortal();

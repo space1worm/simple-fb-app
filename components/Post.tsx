@@ -6,15 +6,22 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-import { IPost } from "../db/db.types";
-
-import { deletePost } from "../db/posts";
 import { useAuth } from "../context/AuthenticationContext";
 
-export default function Post(props: IPost) {
+import { IPost } from "../types/db.types";
+import { deletePost } from "../db/posts";
+
+export default function Post({
+  id,
+  name,
+  message,
+  timeStamp,
+  image,
+  postImage,
+  email,
+}: IPost): JSX.Element {
   const { userAuth } = useAuth();
 
-  const { id, name, message, timeStamp, image, postImage, email } = props;
   const handleDeletePost = () => {
     if (userAuth?.email === email) deletePost(id);
   };

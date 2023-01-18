@@ -1,4 +1,4 @@
-import { useRef, useEffect, ReactNode, useState } from "react";
+import { useRef, useEffect, ReactNode, useState, ReactPortal } from "react";
 import { createPortal } from "react-dom";
 
 import { usePortal } from "../context/PortalContext";
@@ -7,7 +7,7 @@ interface PortalProps {
   children: ReactNode;
 }
 
-export default function Portal(props: PortalProps) {
+export default function Portal(props: PortalProps): ReactPortal | null {
   const [mounted, setMounted] = useState<boolean>(false);
   const ref = useRef<Element | null>(null);
   const { isOpen } = usePortal();

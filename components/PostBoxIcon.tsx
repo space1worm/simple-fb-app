@@ -5,7 +5,7 @@ interface Props {
   IconClass: string;
 }
 
-export default function PostBoxIcon(props: Props) {
+export default function PostBoxIcon(props: Props): JSX.Element {
   const { Icon, text, onClick, IconClass } = props;
 
   return (

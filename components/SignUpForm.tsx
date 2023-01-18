@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useState, useRef } from "react";
 import Image from "next/image";
 
-import { signUp, signInWithGooglePopup } from "../db/user";
+import { signUp, signInWithGooglePopup } from "../db/auth";
 
 import InputField from "./InputField";
 
@@ -36,7 +36,9 @@ const schema = Yup.object<Record<keyof FormInputs, Yup.AnySchema>>({
   ),
 }).required();
 
-export default function SignUpForm({ openRegisterHandler }: Props) {
+export default function SignUpForm({
+  openRegisterHandler,
+}: Props): JSX.Element {
   const [submitted, setSubmitted] = useState(false);
 
   const {

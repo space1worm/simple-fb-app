@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import Image from "next/image";
 
-import { logIn, signInWithGooglePopup } from "../db/user";
+import { logIn, signInWithGooglePopup } from "../db/auth";
 import InputField from "./InputField";
 import { useState } from "react";
 
@@ -25,7 +25,9 @@ const schema = Yup.object<Record<keyof FormInputs, Yup.AnySchema>>({
     .required("Please Enter your password"),
 });
 
-export default function SignInForm({ openRegisterHandler }: Props) {
+export default function SignInForm({
+  openRegisterHandler,
+}: Props): JSX.Element {
   const [submitted, setSubmitted] = useState(false);
   const {
     register,

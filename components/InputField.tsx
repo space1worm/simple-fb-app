@@ -22,7 +22,7 @@ export default function InputField({
   errorMsg,
   isDirty,
   type,
-}: Props) {
+}: Props): JSX.Element {
   return (
     <div className="relative">
       <label

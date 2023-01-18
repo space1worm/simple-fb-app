@@ -7,7 +7,7 @@ import { usePortal } from "../context/PortalContext";
 
 import PostBoxIcon from "./PostBoxIcon";
 
-export default function PostBox() {
+export default function PostBox(): JSX.Element {
   const { userAuth } = useAuth();
   const { setIsOpen } = usePortal();
 
