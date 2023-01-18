@@ -1,1 +1,1 @@
-export type abcTImgFile = Blob | Uint8Array | ArrayBuffer;
+export type APATImgFile = Blob | Uint8Array | ArrayBuffer;
