@@ -5,7 +5,7 @@ import { firebaseDB, firebaseStorage } from "../firebase";
 import { IPosts } from "../types/db/db.interface";
 import { TImgFile } from "../types/db/db.types";
 
-let a = 6;
+let a = 9;
 console.log(a);
 
 export const createPostImage = async (docId: string, file: TImgFile) => {
