@@ -4,8 +4,8 @@ import { CheckIcon, XCircleIcon } from "@heroicons/react/24/outline";
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   title: string;
   register: UseFormRegisterReturn;
-  errorMsg?: string | undefined;
-  isDirty?: boolean | undefined;
+  errorMsg: string | undefined;
+  isDirty: boolean | undefined;
 }
 
 export default function InputField({
