@@ -4,8 +4,8 @@ import autosize from "autosize";
 import Image from "next/image";
 import { XMarkIcon, PhotoIcon } from "@heroicons/react/24/solid";
 
-import { useAuth } from "../../hooks/auth.context.hooks";
-import { usePortal } from "../../hooks/portal.context.hooks";
+import { useAuth } from "../../context/auth.context";
+import { usePortal } from "../../context/portal.context";
 
 import Portal from "../Portal.component";
 
@@ -24,7 +24,7 @@ const initialState: Istate = {
 
 export default function PostModal(): JSX.Element {
   // context
-  const { userAuth } = useAuth();
+  const { user } = useAuth();
   const { setIsOpen } = usePortal();
 
   // state
@@ -84,9 +84,9 @@ export default function PostModal(): JSX.Element {
 
     const payload: IPosts = {
       message: text,
-      name: userAuth?.displayName || "",
-      email: userAuth?.email || "",
-      image: userAuth?.photoURL || "",
+      name: user?.displayName || "",
+      email: user?.email || "",
+      image: user?.photoURL || "",
       timeStamp: serverTimestamp(),
     };
 
@@ -118,16 +118,16 @@ export default function PostModal(): JSX.Element {
             <Image
               className="rounded-full"
               alt="User"
-              src={userAuth?.photoURL || ""}
+              src={user?.photoURL || ""}
               width={40}
               height={40}
             />
-            <h2>{userAuth?.displayName}</h2>
+            <h2>{user?.displayName}</h2>
           </div>
           <textarea
             className="flex px-2 resize-none overflow-hidden break-words flex-col rounded-sm bg-transparent sm:text-base active:outline-none focus:outline-none"
             ref={textRef}
-            placeholder={`Whats on your mind, ${userAuth?.displayName?.split(" ")[0]
+            placeholder={`Whats on your mind, ${user?.displayName?.split(" ")[0]
               }?`}
             onChange={onTextChange}
             value={text}

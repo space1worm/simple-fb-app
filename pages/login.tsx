@@ -4,20 +4,20 @@ import { useEffect, useState } from "react";
 import SignInForm from "../components/forms/SignInForm.component";
 import SignUpForm from "../components/forms/SignUpForm.component";
 
-import { useAuth } from "../hooks/auth.context.hooks";
+import { useAuth } from "../context/auth.context";
 
 export default function Login(): JSX.Element {
-    const { userAuth } = useAuth();
+    const { user } = useAuth();
     const router = useRouter();
     const [register, setRegister] = useState(false);
 
     const toggleForms = () => setRegister(!register);
 
     useEffect(() => {
-        if (userAuth) router.push('/');
+        if (user) router.push('/');
         else router.push('login');
 
-    }, [userAuth])
+    }, [user])
 
     return (
         <section

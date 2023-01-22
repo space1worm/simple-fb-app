@@ -6,10 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import SpinnerButton from "../SpinnerButton.component";
 import InputField from "./InputField.component";
 
-import { logIn, signInWithGooglePopup } from "../../lib/authentication";
-import { ISignInFormInputs } from "../../types/app/app.interfaces";
+import { useAuth } from "../../context/auth.context";
+
 import { SignInSchema } from "../../lib/validation";
 
+import { ISignInFormInputs } from "../../types/app/app.interfaces";
 interface Props {
   openRegisterHandler: () => void;
 }
@@ -18,6 +19,8 @@ export default function SignInForm({
   openRegisterHandler,
 }: Props): JSX.Element {
   const [submitted, setSubmitted] = useState(false);
+  const { signin, signInWithGoogle } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -30,8 +33,7 @@ export default function SignInForm({
   const onSubmit = async (data: ISignInFormInputs) => {
     setSubmitted(true);
     try {
-      const res = await logIn(data.email, data.password);
-      console.log(res);
+      await signin(data.email, data.password);
       setSubmitted(false);
     } catch (e) {
       console.log(e);
@@ -39,8 +41,11 @@ export default function SignInForm({
     }
   };
   const handleGoogleSignIn = async () => {
-    const resp = await signInWithGooglePopup();
-    console.log(resp);
+    try {
+      await signInWithGoogle()
+    } catch {
+      console.log('Something went wrong...');
+    };
   };
 
   return (

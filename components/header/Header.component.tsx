@@ -6,13 +6,12 @@ import {
 } from "@heroicons/react/24/solid";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-import { logOut } from "../../lib/authentication";
-import { useAuth } from "../../hooks/auth.context.hooks";
+import { useAuth } from "../../context/auth.context";
 
 export default function Header(): JSX.Element {
-  const { userAuth } = useAuth();
+  const { user, signout } = useAuth();
 
-  const signOutHandler = () => logOut();
+  const signOutHandler = async () => await signout();
 
   return (
     <header>
@@ -39,13 +38,13 @@ export default function Header(): JSX.Element {
           <Image
             onClick={signOutHandler}
             className="rounded-full cursor-pointer"
-            src={userAuth?.photoURL || ""}
+            src={user?.photoURL || ""}
             width="25"
             height="25"
             alt="profile img"
           />
           <p className="font-semi:bold pr-3 whitespace-nowrap">
-            {userAuth?.displayName?.split(" ")[0]}
+            {user?.displayName?.split(" ")[0]}
           </p>
           <ChatBubbleLeftIcon className="icon" />
           <BellIcon className="icon" />

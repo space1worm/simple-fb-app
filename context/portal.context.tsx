@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import { IPortalContext } from "../types/app/app.interfaces";
 import { TChildren } from "../types/app/app.types";
 
@@ -15,6 +15,10 @@ export function PortalContextProvider({ children }: { children: TChildren }) {
   };
 
   return (
-    <PortalContext.Provider value={values}>{children}</PortalContext.Provider>
+    <PortalContext.Provider value={values}>
+      {children}
+    </PortalContext.Provider>
   );
 }
+
+export const usePortal = () => useContext(PortalContext);

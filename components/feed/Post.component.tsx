@@ -6,7 +6,8 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-import { useAuth } from "../../hooks/auth.context.hooks";
+import { useAuth } from "../../context/auth.context";
+// import { useAuth } from "../../hooks/auth.context.hooks";
 
 import { IPost } from "../../types/db/db.interface";
 import { deletePost } from "../../lib/posts";
@@ -20,11 +21,9 @@ export default function Post({
   postImage,
   email,
 }: IPost): JSX.Element {
-  const { userAuth } = useAuth();
+  const { user } = useAuth();
 
-  const handleDeletePost = () => {
-    if (userAuth?.email === email) deletePost(id);
-  };
+  const handleDeletePost = () => user?.email === email && deletePost(id);
 
   return (
     <div className="flex flex-col">
@@ -47,7 +46,7 @@ export default function Post({
               </p>
             </div>
           </div>
-          {userAuth?.email === email && (
+          {user?.email === email && (
             <TrashIcon
               onClick={handleDeletePost}
               className="h-6 flex cursor-pointer  text-red-600 rounded-full "

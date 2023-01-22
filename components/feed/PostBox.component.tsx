@@ -2,13 +2,13 @@ import Image from "next/image";
 import { FaceSmileIcon } from "@heroicons/react/24/outline";
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/solid";
 
-import { useAuth } from "../../hooks/auth.context.hooks";
-import { usePortal } from "../../hooks/portal.context.hooks";
+import { useAuth } from "../../context/auth.context";
+import { usePortal } from "../../context/portal.context";
 
 import PostBoxIcon from "./PostBoxIcon.component";
 
 export default function PostBox(): JSX.Element {
-  const { userAuth } = useAuth();
+  const { user } = useAuth();
   const { setIsOpen } = usePortal();
 
   return (
@@ -17,7 +17,7 @@ export default function PostBox(): JSX.Element {
         <Image
           className="rounded-full"
           alt="User"
-          src={userAuth?.photoURL || ""}
+          src={user?.photoURL || ""}
           width={40}
           height={40}
         />
@@ -27,7 +27,7 @@ export default function PostBox(): JSX.Element {
             type="button"
             onClick={() => setIsOpen(true)}
           >
-            Whats on your mind, {userAuth?.displayName?.split(" ")[0]}?
+            Whats on your mind, {user?.displayName?.split(" ")[0]}?
           </button>
         </div>
       </div>

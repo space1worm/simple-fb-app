@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import SpinnerButton from "../SpinnerButton.component";
 import InputField from "./InputField.component";
 
-import { signUp, signInWithGooglePopup } from "../../lib/authentication";
+import { useAuth } from "../../context/auth.context";
+
 import { ISignUpFormInputs } from "../../types/app/app.interfaces";
 import { SignUpSchema } from "../../lib/validation";
+
 
 interface Props {
   openRegisterHandler: () => void;
@@ -17,6 +19,7 @@ interface Props {
 export default function SignUpForm({
   openRegisterHandler,
 }: Props): JSX.Element {
+  const { signup, signInWithGoogle } = useAuth();
   const [submitted, setSubmitted] = useState(false);
 
   const {
@@ -31,8 +34,8 @@ export default function SignUpForm({
   const onSubmit = async (data: ISignUpFormInputs) => {
     setSubmitted(true);
     try {
-      const res = await signUp(data.email, data.password);
-      console.log(res);
+      await signup(data.email, data.password);
+      console.log('cool');
     } catch (e) {
       console.log(e);
     }
@@ -43,8 +46,11 @@ export default function SignUpForm({
   const handleGoogleSignUp = async () => {
     if (!checkBoxRef.current?.checked) return alert("nope");
 
-    const resp = await signInWithGooglePopup();
-    console.log(resp);
+    try {
+      await signInWithGoogle();
+    } catch {
+      console.log('Something went wrong...');
+    }
   };
 
   return (

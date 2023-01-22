@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, ReactPortal } from "react";
 import { createPortal } from "react-dom";
 
-import { usePortal } from "../hooks/portal.context.hooks";
+import { usePortal } from "../context/portal.context";
 import { TChildren } from "../types/app/app.types";
 
 interface Props {
